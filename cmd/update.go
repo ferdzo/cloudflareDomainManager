@@ -12,23 +12,19 @@ import (
 
 // updateCmd represents the update command
 var updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Use:   "update --rec_id [argument] --type [argument] --name [argument] --content [argument] --ttl [argument] ",
+	Short: "This command lets you update a DNS record",
+	Long: `
+This command allows you to update a DNS record by providing the record ID, type, name, content and TTL as arguments.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		secret := secrets.LoadSecrets()
 		record := new(functions.Record)
+		recId, _ := cmd.Flags().GetString("rec_id")
 		record.Type, _ = cmd.Flags().GetString("type")
 		record.Name, _ = cmd.Flags().GetString("name")
 		record.Content, _ = cmd.Flags().GetString("content")
 		TTLstr, _ := cmd.Flags().GetString("ttl")
 		record.TTL, _ = strconv.Atoi(TTLstr)
-		recId, _ := cmd.Flags().GetString("rec_id")
 		functions.Update(secret, recId, *record)
 
 	},
@@ -37,13 +33,10 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(updateCmd)
 
-	// Here you will define your flags and configuration settings.
+	updateCmd.Flags().String("type", "", "Type of the record to update")
+	updateCmd.Flags().String("name", "", "Name of the record to update")
+	updateCmd.Flags().String("content", "", "Content of the record to update")
+	updateCmd.Flags().String("ttl", "", "Time to live of the record to update")
+	updateCmd.Flags().String("rec_id", "", "Record ID to update")
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// updateCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// updateCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
