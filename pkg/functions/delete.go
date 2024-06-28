@@ -8,6 +8,10 @@ import (
 )
 
 func Delete(secret *secrets.Secret, record_id string) error {
+
+	// Delete function
+	// DELETE /zones/:zone_identifier/dns_records/:identifier
+
 	req, err := http.NewRequest("DELETE", "https://api.cloudflare.com/client/v4/zones/"+secret.Zone_ID+"/dns_records/"+record_id, nil)
 	if err != nil {
 		return fmt.Errorf("Error creating request")

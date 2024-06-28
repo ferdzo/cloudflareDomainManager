@@ -10,6 +10,9 @@ import (
 
 func Show(secrets *secrets.Secret) (string, error) {
 
+	// Show function
+	// GET /zones/:zone_identifier/dns_records/export
+
 	req, err := http.NewRequest("GET", "https://api.cloudflare.com/client/v4/zones/"+secrets.Zone_ID+"/dns_records/export", nil)
 	if err != nil {
 		return "", fmt.Errorf("Error creating request")

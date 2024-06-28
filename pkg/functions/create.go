@@ -20,6 +20,9 @@ type Record struct {
 
 func Create(secrets *secrets.Secret, record *Record) error {
 
+	// Create a new record
+	// POST /zones/:zone_identifier/dns_records
+
 	data := record
 	payloadBytes, err := json.Marshal(data)
 	if err != nil {

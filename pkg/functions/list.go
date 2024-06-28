@@ -38,6 +38,9 @@ type Response struct {
 
 func List(secret *secrets.Secret) error {
 
+	// List function
+	// GET /zones/:zone_identifier/dns_records
+
 	req, err := http.NewRequest("GET", "https://api.cloudflare.com/client/v4/zones/"+secret.Zone_ID+"/dns_records", nil)
 	if err != nil {
 		return fmt.Errorf("Error creating request")

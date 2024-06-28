@@ -28,8 +28,8 @@ to quickly create a Cobra application.`,
 		record.Content, _ = cmd.Flags().GetString("content")
 		TTLstr, _ := cmd.Flags().GetString("ttl")
 		record.TTL, _ = strconv.Atoi(TTLstr)
-		rec_id, _ := cmd.Flags().GetString("rec_id")
-		functions.Update(secret, rec_id, *record)
+		recId, _ := cmd.Flags().GetString("rec_id")
+		functions.Update(secret, recId, *record)
 
 	},
 }
