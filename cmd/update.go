@@ -38,4 +38,10 @@ func init() {
 	updateCmd.Flags().String("ttl", "", "Time to live of the record to update")
 	updateCmd.Flags().String("rec_id", "", "Record ID to update")
 
+	updateCmd.MarkFlagRequired("type")
+	updateCmd.MarkFlagRequired("name")
+	updateCmd.MarkFlagRequired("content")
+	updateCmd.MarkFlagRequired("ttl")
+	updateCmd.MarkFlagRequired("rec_id")
+
 }
