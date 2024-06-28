@@ -1,4 +1,5 @@
 # CloudflareDomainManager
+## Work in progress
 
 CloudflareDomainManager is a small command-line app written in Go for managing DNS records for domains on Cloudflare.
 
