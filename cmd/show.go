@@ -14,7 +14,7 @@ import (
 var showCmd = &cobra.Command{
 	Use:   "show",
 	Short: "This command shows the whole DNS record for the requested domain",
-	Long:  ``,
+	Long:  `This command shows the whole DNS record for the requested domain. It shows the ID, type, name, content, TTL and proxied status of the record.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		secrets := secrets.LoadSecrets()
 		data, err := functions.Show(secrets)

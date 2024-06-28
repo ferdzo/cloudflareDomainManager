@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 Andrej Ferdzo Mickov <ferdzo.andrej@gmail.com>
 */
 package cmd
 
@@ -9,16 +9,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// listCmd represents the list command
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Use: "list",
+	Short: "This command allows you to list all DNS records in the zone with their ID's, types, names," +
+		"contents, TTL's and proxied status.",
+	Long: `This command allows you to list all DNS records in the zone with their ID's, types, names, contents, TTL's and proxied status.
+		You can use this information to delete records by providing the record ID as an argument to the delete command.
+		You can also use this information to update records by providing the record ID as an argument to the update command.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		secret := secrets.LoadSecrets()
 		err := functions.List(secret)
@@ -31,13 +28,4 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(listCmd)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// listCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// listCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

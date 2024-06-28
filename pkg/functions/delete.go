@@ -20,6 +20,8 @@ func Delete(secret *secrets.Secret, record_id string) error {
 	if err != nil {
 		return fmt.Errorf("Request failed")
 	}
+	defer resp.Body.Close()
+
 	if resp.StatusCode != http.StatusOK {
 		bodyBytes, _ := io.ReadAll(resp.Body)
 		fmt.Printf("failed to delete record: %s", string(bodyBytes))
