@@ -6,6 +6,7 @@ package cmd
 import (
 	"cloudflareDomainManager/pkg/functions"
 	"cloudflareDomainManager/secrets"
+	"fmt"
 	"github.com/spf13/cobra"
 )
 
@@ -16,7 +17,11 @@ var showCmd = &cobra.Command{
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		secrets := secrets.LoadSecrets()
-		functions.Show(secrets)
+		data, err := functions.Show(secrets)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(data)
 	},
 }
 

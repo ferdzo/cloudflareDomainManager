@@ -8,7 +8,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"os"
 )
 
 type Record struct {
@@ -19,12 +18,12 @@ type Record struct {
 	Proxied bool   `json:"proxied"`
 }
 
-func Create(secrets *secrets.Secret, record *Record) {
+func Create(secrets *secrets.Secret, record *Record) error {
 
 	data := record
 	payloadBytes, err := json.Marshal(data)
 	if err != nil {
-		// handle err
+		return fmt.Errorf("Error marshalling data")
 	}
 	body := bytes.NewReader(payloadBytes)
 
@@ -39,16 +38,17 @@ func Create(secrets *secrets.Secret, record *Record) {
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Fatal("FATAL ERROR")
-		// handle err
-	}
-	if resp.StatusCode != 200 {
-		io.Copy(os.Stdout, resp.Body)
-		log.Fatal("Error creating record")
+		return fmt.Errorf("Error requesting")
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode == 200 {
-		fmt.Println("Record successfully created")
+
+	if resp.StatusCode != http.StatusOK {
+		bodyBytes, _ := io.ReadAll(resp.Body)
+		log.Printf("failed to create record: %s", string(bodyBytes))
+		return fmt.Errorf("error creating record, status code: %d", resp.StatusCode)
 	}
 
+	log.Println("Record successfully created")
+
+	return nil
 }
