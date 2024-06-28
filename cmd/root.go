@@ -11,7 +11,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "",
-	Short: "Simple command-line app to configure domain DNS records",
+	Short: "A simple command-line app to configure domain DNS records on Cloudflare.",
 	Long: `A simple command-line app that can be used to create, remove,
 modify, show and everything in-between for DNS records on Cloudflare.`,
 }

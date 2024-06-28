@@ -13,8 +13,8 @@ import (
 
 var createCmd = &cobra.Command{
 	Use:   "create --type [argument] --name [argument] --content [argument] --ttl [argument] --proxied [argument]",
-	Short: "This command is to create a new DNS record",
-	Long:  `This command is to create a new DNS record by providing the type, name, content, ttl and proxied status of the record.`,
+	Short: "The 'create' command is to create a new DNS record",
+	Long:  `This 'create' command is to create a new DNS record by providing the type, name, content, ttl and proxied status of the record.`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		secrets := secrets.LoadSecrets()

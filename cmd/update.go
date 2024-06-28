@@ -13,9 +13,8 @@ import (
 // updateCmd represents the update command
 var updateCmd = &cobra.Command{
 	Use:   "update --rec_id [argument] --type [argument] --name [argument] --content [argument] --ttl [argument] ",
-	Short: "This command lets you update a DNS record",
-	Long: `
-This command allows you to update a DNS record by providing the record ID, type, name, content and TTL as arguments.`,
+	Short: "The 'update' command lets you update a DNS record",
+	Long:  `This command allows you to update a DNS record by providing the record ID, type, name, content and TTL as arguments.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		secret := secrets.LoadSecrets()
 		record := new(functions.Record)

@@ -12,7 +12,7 @@ import (
 
 var listCmd = &cobra.Command{
 	Use: "list",
-	Short: "This command allows you to list all DNS records in the zone with their ID's, types, names," +
+	Short: "The 'list' command allows you to list all DNS records in the zone with their ID's, types, names," +
 		"contents, TTL's and proxied status.",
 	Long: `This command allows you to list all DNS records in the zone with their ID's, types, names, contents, TTL's and proxied status.
 		You can use this information to delete records by providing the record ID as an argument to the delete command.
