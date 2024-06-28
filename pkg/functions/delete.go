@@ -25,7 +25,7 @@ func Delete(secret *secrets.Secret, record_id string) error {
 		fmt.Printf("failed to delete record: %s", string(bodyBytes))
 		return fmt.Errorf("status code: %d", resp.StatusCode)
 	}
-	if resp.StatusCode == http.StatusNoContent {
+	if resp.StatusCode == http.StatusOK {
 		fmt.Println("Record deleted successfully")
 	}
 
