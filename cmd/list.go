@@ -6,6 +6,7 @@ package cmd
 import (
 	"cloudflareDomainManager/pkg/functions"
 	"cloudflareDomainManager/secrets"
+	"fmt"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +21,7 @@ var listCmd = &cobra.Command{
 		secret := secrets.LoadSecrets()
 		err := functions.List(secret)
 		if err != nil {
-			panic(err)
+			fmt.Errorf("error fetching records: %v", err)
 		}
 	},
 }

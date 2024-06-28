@@ -6,6 +6,8 @@ import (
 )
 
 func LoadSecrets() *Secret {
+
+	// Load environment variables from .env file
 	viper.SetConfigFile(".env")
 	err := viper.ReadInConfig()
 
@@ -18,5 +20,6 @@ func LoadSecrets() *Secret {
 		X_Auth_Email: viper.GetString("X_AUTH_EMAIL"),
 		Zone_ID:      viper.GetString("ZONE_ID"),
 	}
+
 	return secrets
 }

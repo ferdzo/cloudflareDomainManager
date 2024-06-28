@@ -19,7 +19,7 @@ var showCmd = &cobra.Command{
 		secrets := secrets.LoadSecrets()
 		data, err := functions.Show(secrets)
 		if err != nil {
-			panic(err)
+			fmt.Errorf("error fetching records: %v", err)
 		}
 		fmt.Println(data)
 	},
@@ -28,13 +28,4 @@ var showCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(showCmd)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// showCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// showCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
